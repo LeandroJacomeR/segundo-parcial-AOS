@@ -1,0 +1,31 @@
+<!-- user-list.component.html -->
+<div class="flex flex-col flex-auto flex-shrink-0 antialiased bg-gray-50 text-gray-800">
+<div class="h-full ml-64 mt-2">
+<table class="table-auto w-full">
+  <thead>
+    <tr>
+      <th class="px-4 py-2 text-indigo-600">ID</th>
+      <th class="px-4 py-2 text-indigo-600">Email</th>
+      <th class="px-4 py-2 text-indigo-600">Name</th>
+      <th class="px-4 py-2 text-indigo-600">Role</th>
+      <th class="px-4 py-2 text-indigo-600">Avatar</th>
+    </tr>
+  </thead>
+  <tbody>
+  @for (item of users; track $index){
+    <tr >
+      <td class="border px-4 py-2">{{ item.id }}</td>
+      <td class="border px-4 py-2">{{ item.email }}</td>
+      <td class="border px-4 py-2">{{ item.name }}</td>
+      <td class="border px-4 py-2">{{ item.role }}</td>
+      <td class="border px-4 py-2">
+        <img [src]="item.avatar" alt="Avatar" class="h-12 w-12 rounded-full object-cover">
+      </td>
+    </tr>
+  }
+    
+  </tbody>
+</table>
+</div>
+</div>
+

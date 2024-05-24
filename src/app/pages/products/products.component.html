@@ -1,0 +1,36 @@
+<div class="flex flex-col flex-auto flex-shrink-0 antialiased bg-gray-50 text-gray-800">
+  <div class="h-full ml-64 mt-2">
+    <div class="p-4">
+      <div class="mb-4">
+        <button 
+          class="bg-indigo-600 text-white px-4 py-2 rounded-full flex items-center hover:bg-indigo-700 transition duration-300"
+          [routerLink]="['/crear-producto']">
+          <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+          </svg>
+          Crear Producto
+        </button>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+        <!-- Product Card -->
+        @for(item of product; track $index){
+            <div class="bg-white p-4 rounded-lg shadow-md product-card transition-transform duration-300 transform hover:scale-105" [routerLink]="['/producto', item.id]" style="cursor: pointer;">
+                <img [ngSrc]="item.images[0]" width="100" height="100" class="w-full h-40 object-cover rounded-lg">
+                <div class="mt-4">
+                    <h2 class="text-lg font-semibold">{{ item.title }}</h2>
+                    <div class="flex items-center mt-2">
+                        <p class="product-description">{{ item.description }}</p>
+                    </div>
+                    <div class="mt-2 product-info">
+                        <span class="text-indigo-600 text-xl">${{ item.price }}</span>
+                    </div>
+                    <div class="mt-2 product-info">
+                        <span class="inline-block bg-indigo-500 text-white rounded-full px-2 py-1 text-xs font-bold mr-3 product-category">{{ item.category.name }}</span>
+                    </div>
+                </div>
+            </div>
+        }
+      </div>
+    </div>
+  </div>
+</div>

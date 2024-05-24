@@ -1,0 +1,55 @@
+<div class="flex flex-col flex-auto flex-shrink-0 antialiased bg-gray-50 text-gray-800">
+
+  <div class="h-full ml-64 mt-2">
+  <button class="text-indigo-600 hover:text-indigo-800 focus:outline-none mt-5 ml-5" (click)="goBack()">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+        </svg>
+      </button>
+    <div class="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl mt-8 p-4">
+      <h2 class="text-2xl text-indigo-600 font-bold mb-4 text-center">Crear Producto</h2>
+      <form (ngSubmit)="onSubmit()" [formGroup]="productForm">
+        <div class="mb-4">
+          <label class="block text-gray-700 text-sm font-bold mb-2">Título</label>
+          <input formControlName="title" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" placeholder="Título del producto">
+          <span class="error text-red-500" *ngIf="title.invalid && (title.dirty || title.touched)">
+            Campo requerido
+          </span>
+        </div>
+        <div class="mb-4">
+          <label class="block text-gray-700 text-sm font-bold mb-2">Precio</label>
+          <input formControlName="price" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="number" placeholder="Precio">
+          <span class="error text-red-500" *ngIf="price.invalid && (price.dirty || price.touched)">
+            Campo requerido
+          </span>
+        </div>
+        <div class="mb-4">
+          <label class="block text-gray-700 text-sm font-bold mb-2">Descripción</label>
+          <textarea formControlName="description" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Descripción del producto"></textarea>
+          <span class="error text-red-500" *ngIf="description.invalid && (description.dirty || description.touched)">
+            Campo requerido
+          </span>
+        </div>
+        <div class="mb-4">
+          <label class="block text-gray-700 text-sm font-bold mb-2">Categoría ID</label>
+          <input formControlName="categoryId" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="number" placeholder="ID de la categoría">
+          <span class="error text-red-500" *ngIf="categoryId.invalid && (categoryId.dirty || categoryId.touched)">
+            Campo requerido
+          </span>
+        </div>
+        <div class="mb-4">
+          <label class="block text-gray-700 text-sm font-bold mb-2">Imagen URL</label>
+          <input formControlName="images" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" placeholder="URL de la imagen">
+          <span class="error text-red-500" *ngIf="images.invalid && (images.dirty || images.touched)">
+            URL requerida
+          </span>
+        </div>
+        <div class="flex items-center justify-between">
+          <button class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+            Crear Producto
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

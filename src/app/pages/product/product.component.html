@@ -1,0 +1,40 @@
+<div class="flex flex-col flex-auto flex-shrink-0 antialiased bg-gray-50 text-gray-800">
+  <div class="h-full ml-64 mt-2">
+    <div *ngIf="errorMessage" class="max-w-2xl mx-auto bg-red-100 p-5 shadow-lg rounded-lg text-red-600">
+      <p>{{ errorMessage }}</p>
+    </div>
+<button class="text-indigo-600 hover:text-indigo-800 focus:outline-none mt-5 ml-5" (click)="goBack()">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+        </svg>
+      </button>
+    <div *ngIf="product" class="max-w-2xl mx-auto bg-white p-5 shadow-lg rounded-lg">
+      
+
+      <div class="flex items-center justify-between mb-4">
+        <div class="flex items-center">
+          <h1 class="text-2xl text-indigo-600 font-bold mr-4">{{ product.title }}</h1>
+          <img [ngSrc]="product.images[0]" alt="{{ product.title }}" width="200" height="200" class="rounded-lg shadow-lg ml-60">
+        </div>
+      </div>
+      
+      <p class="text-gray-700 text-base mb-4 mt-10">{{ product.description }}</p>
+      <p class="text-gray-900 text-xl font-semibold mb-4">Precio: ${{ product.price }}</p>
+
+      <div class="mt-4">
+        <h2 class="text-lg font-semibold mb-2">Category: {{ product.category.name }}</h2>
+        <img [ngSrc]="product.category.image" alt="{{ product.category.name }}" width="50" height="50" class="w-24 h-24 rounded-full">
+      </div>
+
+      <!-- Botones de actualizar y eliminar -->
+      <div class="flex justify-end mt-6 space-x-4">
+        <button class="flex items-center bg-yellow-500 text-white px-4 py-2 rounded-lg shadow hover:bg-yellow-600 focus:outline-none" (click)="updateProduct()">
+          Actualizar
+        </button>
+        <button class="flex items-center bg-red-500 text-white px-4 py-2 rounded-lg shadow hover:bg-red-600 focus:outline-none" (click)="deleteProduct()">
+          Eliminar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

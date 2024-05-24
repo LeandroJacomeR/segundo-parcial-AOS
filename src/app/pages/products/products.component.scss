@@ -1,0 +1,19 @@
+/* products.component.css */
+.product-description,
+.product-category {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%; /* Limita el ancho del texto */
+}
+
+.product-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.product-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
