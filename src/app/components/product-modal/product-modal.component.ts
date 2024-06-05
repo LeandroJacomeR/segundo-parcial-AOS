@@ -60,8 +60,9 @@ export class ProductModalComponent {
         description: formValue.description,
         categoryId: formValue.categoryId, // Utilizar el arreglo de imágenes convertido
       };
-      
-      this.productService.updateProduct(productId, updatedProductData)
+      const token = localStorage.getItem("token")
+      if(token){
+        this.productService.updateProduct(productId, updatedProductData)
         .subscribe({
           next: (response) => {
             this.dialogRef.close(response); // Cerrar diálogo con los datos actualizados del producto
@@ -73,6 +74,10 @@ export class ProductModalComponent {
             this.openSnackBar('Error al actualizar el producto', 'Cerrar');
           }
         });
+      }else{
+        this.openSnackBar('Error al actualizar el producto', 'Cerrar');
+      }
+      
     }
   }
   

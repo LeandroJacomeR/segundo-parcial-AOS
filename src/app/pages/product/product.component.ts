@@ -71,19 +71,25 @@ export class ProductComponent implements OnInit {
   }
 
   deleteProduct() {
-    if (this.product && this.product.id) {
-      this._productHttp.deleteProduct(this.product.id.toString()).subscribe({
-        next: () => {
-          console.log('Producto eliminado');
-          this.openSnackBar('Producto eliminado exitosamente', 'Cerrar');
-          this.goBack();
-        },
-        error: (err) => {
-          console.error('Error eliminando producto:', err);
-          this.openSnackBar('Error al eliminar el producto, Intente de nuevo más tarde', 'Cerrar');
-        }
-      });
+    const token = localStorage.getItem("token")
+    if(token){
+      if (this.product && this.product.id) {
+        this._productHttp.deleteProduct(this.product.id.toString()).subscribe({
+          next: () => {
+            console.log('Producto eliminado');
+            this.openSnackBar('Producto eliminado exitosamente', 'Cerrar');
+            this.goBack();
+          },
+          error: (err) => {
+            console.error('Error eliminando producto:', err);
+            this.openSnackBar('Error al eliminar el producto, Intente de nuevo más tarde', 'Cerrar');
+          }
+        });
+      }
+    }else{
+      this.openSnackBar('Error al eliminar el producto', 'Cerrar');
     }
+    
   }
 
   openSnackBar(message: string, action: string) {

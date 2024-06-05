@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { UsersService } from '../../services/http/users.service';
 import { UsuarioInterface } from '../../interfaces/usuario-interface';
-import { CommonModule, Location } from '@angular/common';
+import { CommonModule, Location, NgOptimizedImage } from '@angular/common';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   standalone: true,
-  imports: [ CommonModule ],
+  imports: [ CommonModule, NgOptimizedImage ],
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {

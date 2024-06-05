@@ -66,7 +66,9 @@ export class CreateProductComponent {
         images: [formValue.images]
       };
 
-      this.productService.createProduct(productData)
+      const token = localStorage.getItem("token")
+      if (token){
+        this.productService.createProduct(productData)
         .pipe(
           catchError((error: HttpErrorResponse) => {
             if (error.status === 401) {
@@ -92,7 +94,10 @@ export class CreateProductComponent {
         });
     } else {
       console.log('Formulario inválido');
+      this.openSnackBar('Error al crear el producto', 'Cerrar');
     }
+      }
+      
   }
 
   openSnackBar(message: string, action: string) {
