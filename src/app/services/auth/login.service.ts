@@ -11,10 +11,7 @@ export class LoginService {
 
   constructor() { }
 
-  getToken(email: string, password: string){
-    return this._http.post(`${environment.api}/auth/login`, {
-      email: email,
-      password: password
-    })
+  getToken(username: string, password: string){
+    return this._http.get(`${environment.api}auth/login?username=${username}&password=${password}`)
   }
 }

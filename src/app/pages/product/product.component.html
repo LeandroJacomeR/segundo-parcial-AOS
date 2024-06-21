@@ -13,18 +13,13 @@
 
       <div class="flex items-center justify-between mb-4">
         <div class="flex items-center">
-          <h1 class="text-2xl text-indigo-600 font-bold mr-4">{{ product.title }}</h1>
-          <img [ngSrc]="product.images[0]" alt="{{ product.title }}" width="200" height="200" class="rounded-lg shadow-lg ml-60">
+          <h1 class="text-2xl text-indigo-600 font-bold mr-4">{{ product.nombre }}</h1>
+          <img [ngSrc]="product.img" alt="{{ product.nombre }}" width="200" height="200" class="rounded-lg shadow-lg ml-60" priority>
         </div>
       </div>
       
-      <p class="text-gray-700 text-base mb-4 mt-10">{{ product.description }}</p>
-      <p class="text-gray-900 text-xl font-semibold mb-4">Precio: ${{ product.price }}</p>
-
-      <div class="mt-4">
-        <h2 class="text-lg font-semibold mb-2">Category: {{ product.category.name }}</h2>
-        <img [ngSrc]="product.category.image" alt="{{ product.category.name }}" width="50" height="50" class="w-24 h-24 rounded-full">
-      </div>
+      <p class="text-gray-700 text-base mb-4 mt-10">{{ product.detalle }}</p>
+      <p class="text-gray-900 text-xl font-semibold mb-4">Precio: ${{ product.valor }}</p>
 
       <!-- Botones de actualizar y eliminar -->
       <div class="flex justify-end mt-6 space-x-4">

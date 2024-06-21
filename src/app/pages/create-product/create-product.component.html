@@ -11,36 +11,30 @@
       <form (ngSubmit)="onSubmit()" [formGroup]="productForm">
         <div class="mb-4">
           <label class="block text-gray-700 text-sm font-bold mb-2">Título</label>
-          <input formControlName="title" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" placeholder="Título del producto">
-          <span class="error text-red-500" *ngIf="title.invalid && (title.dirty || title.touched)">
+          <input formControlName="nombre" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" placeholder="Título del producto">
+          <span class="error text-red-500" *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
             Campo requerido
           </span>
         </div>
         <div class="mb-4">
           <label class="block text-gray-700 text-sm font-bold mb-2">Precio</label>
-          <input formControlName="price" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="number" placeholder="Precio">
-          <span class="error text-red-500" *ngIf="price.invalid && (price.dirty || price.touched)">
+          <input formControlName="valor" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="number" placeholder="Precio">
+          <span class="error text-red-500" *ngIf="valor.invalid && (valor.dirty || valor.touched)">
             Campo requerido
           </span>
         </div>
         <div class="mb-4">
           <label class="block text-gray-700 text-sm font-bold mb-2">Descripción</label>
-          <textarea formControlName="description" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Descripción del producto"></textarea>
-          <span class="error text-red-500" *ngIf="description.invalid && (description.dirty || description.touched)">
+          <textarea formControlName="detalle" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Descripción del producto"></textarea>
+          <span class="error text-red-500" *ngIf="detalle.invalid && (detalle.dirty || detalle.touched)">
             Campo requerido
           </span>
         </div>
-        <div class="mb-4">
-          <label class="block text-gray-700 text-sm font-bold mb-2">Categoría ID</label>
-          <input formControlName="categoryId" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="number" placeholder="ID de la categoría">
-          <span class="error text-red-500" *ngIf="categoryId.invalid && (categoryId.dirty || categoryId.touched)">
-            Campo requerido
-          </span>
-        </div>
+        
         <div class="mb-4">
           <label class="block text-gray-700 text-sm font-bold mb-2">Imagen URL</label>
-          <input formControlName="images" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" placeholder="URL de la imagen">
-          <span class="error text-red-500" *ngIf="images.invalid && (images.dirty || images.touched)">
+          <input formControlName="img" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" placeholder="URL de la imagen">
+          <span class="error text-red-500" *ngIf="img.invalid && (img.dirty || img.touched)">
             URL requerida
           </span>
         </div>

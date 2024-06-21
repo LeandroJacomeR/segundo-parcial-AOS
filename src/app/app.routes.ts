@@ -28,16 +28,6 @@ export const routes: Routes = [
         component: CreateProductComponent,
         canActivate: [authGuard]
     },
-    {
-        path: 'usuarios',
-        component: UsersComponent,
-        canActivate: [authGuard]
-    },
-    {
-        path: 'perfil',
-        component: ProfileComponent,
-        canActivate: [authGuard]
-    },
     { 
         path: '**', 
         redirectTo: 'productos' 

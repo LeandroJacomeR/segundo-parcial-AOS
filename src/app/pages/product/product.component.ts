@@ -47,9 +47,9 @@ export class ProductComponent implements OnInit {
         }
       })
     ).subscribe(
-      (res: ProductoInterface | null) => {
+      (res: { msg: string, data: ProductoInterface } | null) => {
         if (res) {
-          this.product = res;
+          this.product = res.data;
         }
       }
     );
@@ -73,8 +73,8 @@ export class ProductComponent implements OnInit {
   deleteProduct() {
     const token = localStorage.getItem("token")
     if(token){
-      if (this.product && this.product.id) {
-        this._productHttp.deleteProduct(this.product.id.toString()).subscribe({
+      if (this.product && this.product.id_producto) {
+        this._productHttp.deleteProduct(this.product.id_producto.toString()).subscribe({
           next: () => {
             console.log('Producto eliminado');
             this.openSnackBar('Producto eliminado exitosamente', 'Cerrar');

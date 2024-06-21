@@ -20,7 +20,7 @@ export class LoginComponent {
 
   constructor(private fb: FormBuilder, private router: Router) {
     this.formulario = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
+      email: ['', [Validators.required]],
       password: ['', Validators.required]
     });
   }
@@ -49,7 +49,7 @@ export class LoginComponent {
         })
       ).subscribe((res: any) => {
         console.log(res);
-        localStorage.setItem("token", res["access_token"]);
+        localStorage.setItem("token", res["token"]);
         this.router.navigate(['/productos']);
       });
     } else {

@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ProductsService } from '../../services/http/products.service';
 import { Router } from '@angular/router';
-import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar'; 
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { CommonModule, Location } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
@@ -26,32 +26,27 @@ export class CreateProductComponent {
     private location: Location
   ) {
     this.productForm = this.fb.group({
-      title: ['', Validators.required],
-      price: [0, [Validators.required, Validators.min(1)]],
-      description: ['', Validators.required],
-      categoryId: [1, Validators.required],
-      images: ['', Validators.required]
+      nombre: ['', Validators.required],
+      valor: [0, [Validators.required, Validators.min(1)]],
+      detalle: ['', Validators.required],
+      img: ['', Validators.required]
     });
   }
 
-  get title() {
-    return this.productForm.get('title') as FormControl;
+  get nombre() {
+    return this.productForm.get('nombre') as FormControl;
   }
 
-  get price() {
-    return this.productForm.get('price') as FormControl;
+  get valor() {
+    return this.productForm.get('valor') as FormControl;
   }
 
-  get description() {
-    return this.productForm.get('description') as FormControl;
+  get detalle() {
+    return this.productForm.get('detalle') as FormControl;
   }
 
-  get categoryId() {
-    return this.productForm.get('categoryId') as FormControl;
-  }
-
-  get images() {
-    return this.productForm.get('images') as FormControl;
+  get img() {
+    return this.productForm.get('img') as FormControl;
   }
 
   onSubmit() {
@@ -59,45 +54,46 @@ export class CreateProductComponent {
     if (this.productForm.valid) {
       const formValue = this.productForm.value;
       const productData = {
-        title: formValue.title,
-        price: formValue.price,
-        description: formValue.description,
-        categoryId: formValue.categoryId,
-        images: [formValue.images]
+        nombre: formValue.nombre,
+        valor: formValue.valor,
+        detalle: formValue.detalle,
+        img: formValue.img
       };
 
+      console.log(productData);
+
       const token = localStorage.getItem("token")
-      if (token){
+      if (token) {
         this.productService.createProduct(productData)
-        .pipe(
-          catchError((error: HttpErrorResponse) => {
-            if (error.status === 401) {
-              this.creationError = 'Error al crear el producto: Unauthorized';
-            } else if (error.status === 400) {
-              this.creationError = 'Error al crear el producto: Bad Request';
-            } else {
-              this.creationError = 'Error al crear el producto. Inténtalo de nuevo más tarde.';
+          .pipe(
+            catchError((error: HttpErrorResponse) => {
+              if (error.status === 401) {
+                this.creationError = 'Error al crear el producto: Unauthorized';
+              } else if (error.status === 400) {
+                this.creationError = 'Error al crear el producto: Bad Request';
+              } else {
+                this.creationError = 'Error al crear el producto. Inténtalo de nuevo más tarde.';
+              }
+              return throwError(error);
+            })
+          )
+          .subscribe({
+            next: (response) => {
+              console.log('Producto creado:', response);
+              this.openSnackBar('Producto creado exitosamente', 'Cerrar');
+              this.router.navigate(['/productos']);
+            },
+            error: (error) => {
+              console.error('Error al crear producto:', error);
+              this.openSnackBar('Error al crear el producto', 'Cerrar');
             }
-            return throwError(error);
-          })
-        )
-        .subscribe({
-          next: (response) => {
-            console.log('Producto creado:', response);
-            this.openSnackBar('Producto creado exitosamente', 'Cerrar');
-            this.router.navigate(['/productos']);
-          },
-          error: (error) => {
-            console.error('Error al crear producto:', error);
-            this.openSnackBar('Error al crear el producto', 'Cerrar');
-          }
-        });
-    } else {
-      console.log('Formulario inválido');
-      this.openSnackBar('Error al crear el producto', 'Cerrar');
-    }
+          });
+      } else {
+        console.log('Formulario inválido');
+        this.openSnackBar('Error al crear el producto', 'Cerrar');
       }
-      
+    }
+
   }
 
   openSnackBar(message: string, action: string) {

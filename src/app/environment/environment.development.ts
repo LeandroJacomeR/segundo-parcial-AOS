@@ -1,3 +1,3 @@
 export const environment = {
-    api: 'https://api.escuelajs.co/api/v1'
+    api: 'http://localhost:8000/'
 }

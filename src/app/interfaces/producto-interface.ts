@@ -1,14 +1,7 @@
-export interface CategoryInterface {
-    id: number,
-    name: string,
-    image: string
-}
-
 export interface ProductoInterface {
-    id: number,
-    title: string,
-    price: number,
-    description: string,
-    images: string[],
-    category: CategoryInterface
+    id_producto: number,
+    nombre: string,
+    valor: number,
+    detalle: string,
+    img: string,
 }

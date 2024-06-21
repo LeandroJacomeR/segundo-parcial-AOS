@@ -25,40 +25,37 @@ export class ProductModalComponent {
     private location: Location
   ) {
     this.productForm = this.formBuilder.group({
-      title: ['', Validators.required],
-      price: ['', [Validators.required, Validators.min(0)]],
-      description: ['', Validators.required],
+      nombre: ['', Validators.required],
+      valor: ['', [Validators.required, Validators.min(0)]],
+      detalle: ['', Validators.required],
     });
 
     // Set initial form values from the data passed
     this.productForm.patchValue(this.data.product);
   }
-  get title() {
-    return this.productForm.get('title') as FormControl;
+  get nombre() {
+    return this.productForm.get('nombre') as FormControl;
   }
 
-  get price() {
-    return this.productForm.get('price') as FormControl;
+  get valor() {
+    return this.productForm.get('valor') as FormControl;
   }
 
-  get description() {
-    return this.productForm.get('description') as FormControl;
+  get detalle() {
+    return this.productForm.get('detalle') as FormControl;
   }
 
-  get categoryId() {
-    return this.productForm.get('categoryId') as FormControl;
-  }
 
   onUpdate(): void {
     if (this.productForm.valid) {
-      const productId = this.data.product.id;
+      const productId = this.data.product.id_producto;
       const formValue = this.productForm.value;
+      console.log(formValue);
   
       const updatedProductData = {
-        title: formValue.title,
-        price: formValue.price,
-        description: formValue.description,
-        categoryId: formValue.categoryId, // Utilizar el arreglo de imágenes convertido
+        nombre: formValue.nombre,
+        valor: formValue.valor,
+        detalle: formValue.detalle,
       };
       const token = localStorage.getItem("token")
       if(token){
